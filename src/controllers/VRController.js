@@ -23,6 +23,7 @@ const analyze = async (img, model, credentials) => {
       err: false,
       result: vrResponse.result.images[0].classifiers[0].classes
     };
+    console.log(vrResponse)
   } catch (err) {
     console.error(err);
     response = {
@@ -68,11 +69,10 @@ const changeModel = async (newCredentials) => {
         model: newModel,
         credentials: newCredentials
       };
-    } catch {
+    } catch(error) {
       response = {
         err: true,
-        msg:
-          'As credenciais inseridas são inválidas. Por favor, tente novamente.'
+        msg: error
       };
     }
     return response;
